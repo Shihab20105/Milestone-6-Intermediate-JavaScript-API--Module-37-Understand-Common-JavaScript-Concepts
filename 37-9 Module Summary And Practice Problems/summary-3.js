@@ -45,5 +45,78 @@ parent()
    ^
 child()
 
+_____________________________________________________________________________________________
+                                    
 
+                                    CLOSURE
+                                    =======
+
+let a = 10 ;                        |--------------->Global Scope
+function f(param1){            |----|-------->function 'f'
+    let b = param1;            |    |
+    return function n(){  |----|----|---->function 'n'
+        let c = 10        |    |    |
+        let d = a + b + c;|    |    |
+        return d;         |    |    |
+    }                     |    |    |
+}                              |    |
+const k = f(20);                    |            
+console.log(k());                   |         //function 'f' returns function 'n'
+
+// Output: 40
+
+____________________________________________________________________________________
+
+
+let a = 10;                         // Global scope variable
+
+function f(param1) {                // Function f
+    let b = param1;                 // Local variable b in f
+    return function n() {           // Inner function n (closure)
+        let c = 10;                 // Local variable c in n
+        let d = a + b + c;          // Uses a (global), b (f), c (n)
+        return d;                   // Returns the sum
+    }
+}
+
+const k = f(20);                    // f(20) returns function n
+console.log(k());                   // Calls n()
+
+// Output: 40
+
+//=========================================================================================//
+
+
+                                 CALLBACK FUNCTION
+                                 =================
+
+A CALLBACK FUNCTION IS A FUNCTION THAT IS PASSED AS AN ARGUMENT TO ANOTHER FUNCTION, TO BE "CALLED BACK" AT A LATER TIME.
+
+function showMessage(s){
+    s();                   ----------->//message ()
+}
+function message(){
+    console.log("Hello");
+}
+
+showMessage(message);
+
+_____________________________________________________________________________________________
+
+                                    CALLBACK FUNCTION
+                                    =================
+
+function numberOne(){
+    console.log("numberOne is called");
+}
+
+function numberTwo(callback){          -----------------> Callback function
+    console.log("numberTwo is called");
+    callback();
+}
+numberTwo (numberOne);                 ------------------> Callback function
+
+Output:
+numberTwo is called
+numberOne is called
 */
